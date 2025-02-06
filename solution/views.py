@@ -11,7 +11,10 @@ class NumberClassificationView(APIView):
 
             funFact = requests.get(numbersAPI).text
         except:
-            return Response({'number': 'alphabet', 'error': True}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'number': 'alphabet', 'error': True}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         digitSum = 0
         tempNum = str(number)
