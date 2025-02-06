@@ -18,6 +18,8 @@ class NumberClassificationView(APIView):
 
         digitSum = 0
         tempNum = str(number)
+        if tempNum.startswith('-'):
+            tempNum = tempNum[1:]
         for i in range(len(tempNum)):
             digitSum += int(tempNum[i])
 
@@ -43,14 +45,15 @@ class NumberClassificationView(APIView):
         def propertiesField(number):
             result = []
 
-            num = str(number)
-            numLen = len(num)
-            armstrongNum = 0
-            for i in range(numLen):
-                armstrongNum += (int(num[i]) ** numLen)
+            if number >= 0:
+                num = str(number)
+                numLen = len(num)
+                armstrongNum = 0
+                for i in range(numLen):
+                    armstrongNum += (int(num[i]) ** numLen)
             
-            if armstrongNum == number:
-                result.append('armstrong')
+                if armstrongNum == number:
+                    result.append('armstrong')
 
             if (number % 2) == 0:
                 result.append('even')
